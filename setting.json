@@ -1,13 +1,12 @@
 {
-  "name-web":"Japan Daily",
-  "author":"sino",
+  "name-web":"STACKOVERFLOW MASKODING",
+  "author":"MASKODING",
   "remove-comment-html":true,
-  "target":"https://daily-trendy.com",
+  "target":"https://m.tribunnews.com",
   "map-permalink":[
     "page",
     "content",
-    "edu",
-	"sch",
+    "en",
     "host"
   ],
   "name-folder-sitemap":"sitemap",
@@ -40,7 +39,7 @@
       ]
     },
     {
-      "target":"www.imlearningmath.com",
+      "target":"m.tribunnews.com",
       "element-remove-selector":[
         ".baca",
         ".op-interactive",
@@ -96,26 +95,11 @@
       "data-attribute":[
         {
           "name-attribute":"name",
-          "value-attribute":"google-site-verification"
+          "value-attribute":"description"
         },
         {
           "name-attribute":"content",
-          "value-attribute":"IZui0FiZq3ME4sR9hSyEXUnaJz15cC7uFfJNTYznDa0"
-        }
-      ],
-      "data-innerHTML":"",
-      "position":"start"
-    },
-    {
-      "name-element":"meta",
-      "data-attribute":[
-        {
-          "name-attribute":"name",
-          "value-attribute":"msvalidate.01"
-        },
-        {
-          "name-attribute":"content",
-          "value-attribute":"95D202BE6E826F3B35D1F98D65B267DB"
+          "value-attribute":"${descriptionPost}"
         }
       ],
       "data-innerHTML":"",
