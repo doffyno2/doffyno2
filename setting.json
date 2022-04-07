@@ -1,13 +1,12 @@
 {
-  "name-web":"Knowledge4U",
-  "author":"scez",
+  "name-web":"STACKOVERFLOW MASKODING",
+  "author":"MASKODING",
   "remove-comment-html":true,
-  "target":"https://www.drivereasy.com",
+  "target":"https://m.tribunnews.com",
   "map-permalink":[
     "page",
     "content",
-    "edu",
-	"sch",
+    "cara",
     "host"
   ],
   "name-folder-sitemap":"sitemap",
@@ -40,7 +39,7 @@
       ]
     },
     {
-      "target":"www.imlearningmath.com",
+      "target":"m.tribunnews.com",
       "element-remove-selector":[
         ".baca",
         ".op-interactive",
@@ -96,26 +95,11 @@
       "data-attribute":[
         {
           "name-attribute":"name",
-          "value-attribute":"yandex-verification"
+          "value-attribute":"description"
         },
         {
           "name-attribute":"content",
-          "value-attribute":"9978ac6071cd9c44"
-        }
-      ],
-      "data-innerHTML":"",
-      "position":"start"
-    },
-    {
-      "name-element":"meta",
-      "data-attribute":[
-        {
-          "name-attribute":"name",
-          "value-attribute":"msvalidate.01"
-        },
-        {
-          "name-attribute":"content",
-          "value-attribute":"AAD824FDB67522B4172C0EA1020720B3"
+          "value-attribute":"${descriptionPost}"
         }
       ],
       "data-innerHTML":"",
