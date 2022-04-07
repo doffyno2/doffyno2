@@ -1,3 +1,12 @@
+function isUrl(data){
+  try{
+    new URL(data);
+    return true;
+  }catch(e){
+    return false;
+  };
+};
+
 function urlParse(data){
   var m = data.match(/^(([^:\/?#]+:)?(?:\/\/((?:([^\/?#:]*):([^\/?#:]*)@)?([^\/?#:]*)(?::([^\/?#:]*))?)))?([^?#]*)(\?[^#]*)?(#.*)?$/),
         r = {
@@ -35,75 +44,6 @@ function removeImg(data){
     targetImg.remove();
   };
 };
-
-function referer_se()
-{
-  return str_contains(document.referrer.toLowerCase(), ['.google.', '.yahoo.', '.bing.', '.yandex.']);
-}
-
-function referer_sm()
-{
-  return str_contains(document.referrer.toLowerCase(), ['fb.com', 'facebook.com', 'twitter.com', 'pinterest.com', 'plus.google.']);
-}
-
-function referer_empty()
-{
-  var referer = document.referrer;
-  return (!referer || 0 === referer.length);
-}
-
-function referer_not_empty()
-{
-  return !referer_empty();
-}
-
-function str_contains(str, needles){
-  var contains = false;
-
-  needles.forEach(function(needle){
-    if(str.indexOf(needle) != -1){
-      contains = true;
-    }
-  });
-
-  return contains;
-}
-
-function setInnerHTML(elm, html) {
-    elm.innerHTML = html;
-    Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
-        const newScript = document.createElement("script");
-        Array.from(oldScript.attributes)
-        .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
-        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-        oldScript.parentNode.replaceChild(newScript, oldScript);
-    });
-}
-
-function inject(location, pu_var)
-{
-    //Create the element using the createElement method.
-    var myDiv = document.createElement("div");
-  myDiv.setAttribute("style","display: flex;justify-content: center;");
-
-  let doc=document[location];
-
-  if (doc) {
-    document[location].appendChild(myDiv);
-
-    //Set its unique ID.
-    //myDiv.id = 'pop_' + window.pu.id + '_' + pu_var;
-    //Add your content to the DIV
-    setInnerHTML(myDiv, window.pu[pu_var]);
-    console.log("Element found " + location);
-
-  } else {
-    console.log("Not found " + location);
-  }
-}
-
-
-
 document.querySelectorAll("img").forEach(function(a){
   try{
     let dataUrl=a.getAttribute("src");
@@ -125,19 +65,18 @@ document.querySelectorAll("img").forEach(function(a){
 
   };
 });
-
-
-
 let dbAds=[
   {
     "target-selector":[
       ".container",
       "#container",
       ".content",
-      "#content"
+      ".pa15.bgwhite"
     ],
     "position":"out-top", //out-top, out-bottom, in-top, in-bottom
-    "data" :``,
+    "data" :`
+    <!-- Iklan Header -->
+    `,
     "style":`
       width: 90%;
       margin: auto;
@@ -209,61 +148,11 @@ dataLazy.forEach(function(a){
     };
   };
 });
-(function(){injectScript([{"attr":[{"name":"type","value":"text/javascript"},{"name":"src","value":"//lightningbarrelwretch.com/bb/68/60/bb686052447da3a625e8f0679168e6ce.js"}],"tag":"script","inner":""},{"attr":[{"name":"type","value":"text/javascript"},{"name":"src","value":"//lightningbarrelwretch.com/36/f6/e9/36f6e999cfe38c266306aa07d6b7712d.js"}],"tag":"script","inner":""}],{"target":"head"});function injectScript(e,t){let n=t.target;for(let t of e){let e=t.tag,r=t.inner,o=document.createElement(e);o.innerHTML=r;let c=t.attr;for(let e of c)o.setAttribute(e.name,e.value);document.querySelector(n)&&document.querySelector(n).append(o)}}})();
 
-//(function(){injectScript([{"attr":[{"name":"id","value":"ads-fly"}],"tag":"div","inner":"\n <div class=\"main-fly-ads\">\n        <div class=\"center-fly-ads\">\n          <div id=\"btn-close-ads\">\n            <div class=\"btn-fix-close\">X</div>\n          </div>\n          <!-- code adstera banner -->\n          <div id=\"container-9c0cb74cb61b96dbbdcb0f5df7cb7c8b\"></div>\n          <!-- end code adstera banner-->\n        </div>\n      </div>\n    "},{"attr":[{"name":"async","value":"async"},{"name":"data-cfasync","value":"false"},{"name":"src","value":"//"}],"tag":"script","inner":""},{"attr":[],"tag":"script","inner":"\nconst directLinkAds=\"\";\n\nconst settingDirectLinkAds = {\n  \"lick-direct\" : \"https://myshraidar.eu.org/top-5-online-dating-websites-which-are-totally-free\",\n  \"replace-history-back\" : true,\n  \"filter-referer\" : {\n    \"status\":true,\n    \"referer\" : [\n      \".google.\",\n      \"bing.\",\n      \".facebook.\",\n      \"yahoo.com\"\n    ]\n  }\n};\n\ndocument.querySelector(\"#btn-close-ads > div\").addEventListener(\"click\",async ()=>{\n  await document.getElementById(\"ads-fly\").remove();\n  await window.open(settingDirectLinkAds[\"lick-direct\"],\"_blank\");\n  // setTimeout(()=>{\n  //   document.body.addEventListener(\"click\",async ()=>{\n  //     await window.open(settingDirectLinkAds[\"lick-direct\"],\"_blank\");\n  //   },{\n  //     once:true\n  //   },1000);\n  // });\n});\n\n// document.querySelector(\"#ads-fly\").addEventListener(\"click\",async ()=>{\n//     await window.open(settingDirectLinkAds[\"https://myshraidar.eu.org/top-5-online-dating-websites-which-are-totally-free\"],\"_blank\");\n// });\n\nhistory.pushState(null, document.title, location.href);\nwindow.addEventListener('popstate', function (event)\n{\n  window.location.href=settingDirectLinkAds[\"lick-direct\"];\n});\n"},{"attr":[],"tag":"style","inner":"\n#ads-fly {\n    position: fixed;\n    top: 0;\n    z-index: 99999;\n    width: 100%;\n    height: 100%;\n    background-color: #71769eb0;\n}\n.main-fly-ads {\n    padding-top: 10%;\n}\n.center-fly-ads {\n    width: fit-content;\n    margin: auto;\n    background-color: #dddde8;\n    border-radius: 10px;\n    z-index: 99999;\n}\n#btn-close-ads {\n    text-align: right;\n    position: relative;\n}\n.btn-fix-close {\n    width: max-content;\n    background-color: red;\n    padding: 2px 9px;\n    position: absolute;\n    right: 0;\n    z-index: 999999;\n    cursor: pointer;\n}\n"}],{"target":"body"});function injectScript(e,t){let n=t.target;for(let t of e){let e=t.tag,r=t.inner,o=document.createElement(e);o.innerHTML=r;let c=t.attr;for(let e of c)o.setAttribute(e.name,e.value);document.querySelector(n)&&document.querySelector(n).append(o)}}})();
+(function(){injectScript([{"attr":[{"name":"type","value":"text/javascript"}],"tag":"script","inner":"var _Hasync= _Hasync|| [];\n_Hasync.push(['Histats.start', '1,4035261,4,0,0,0,00010000']);\n_Hasync.push(['Histats.fasi', '1']);\n_Hasync.push(['Histats.track_hits', '']);\n(function() {\nvar hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;\nhs.src = ('//s10.histats.com/js15_as.js');\n(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);\n})();"},{"attr":[],"tag":"noscript","inner":"<a href=\"/\" target=\"_blank\"><img src=\"//sstatic1.histats.com/0.gif?4035261&amp;101\" alt=\"\" border=\"0\"></a>"}],{"target":"body"});function injectScript(e,t){let n=t.target;for(let t of e){let e=t.tag,r=t.inner,o=document.createElement(e);o.innerHTML=r;let c=t.attr;for(let e of c)o.setAttribute(e.name,e.value);document.querySelector(n)&&document.querySelector(n).append(o)}}})();
 
-(function(){injectScript([{"attr":[{"name":"async","value":""},{"name":"src","value":"https://www.googletagmanager.com/gtag/js?id=G-TYNDM5SXWK"}],"tag":"script","inner":""},{"attr":[],"tag":"script","inner":"\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-TYNDM5SXWK');\n"}],{"target":"body"});function injectScript(e,t){let n=t.target;for(let t of e){let e=t.tag,r=t.inner,o=document.createElement(e);o.innerHTML=r;let c=t.attr;for(let e of c)o.setAttribute(e.name,e.value);document.querySelector(n)&&document.querySelector(n).append(o)}}})();
-(function () {
-    injectScript(
-        [
-            {
-                attr: [{ name: "type", value: "text/javascript" }],
-                tag: "script",
-                inner: "\n\tatOptions = {\n\t\t'key' : '95ba0e55dcd33f223db664f61ab8ab22',\n\t\t'format' : 'iframe',\n\t\t'height' : 250,\n\t\t'width' : 300,\n\t\t'params' : {}\n\t};\n",
-            },
-            {
-                attr: [
-                    { name: "type", value: "text/javascript" },
-                    { name: "src", value: "https://lightningbarrelwretch.com/95ba0e55dcd33f223db664f61ab8ab22/invoke.js" },
-                ],
-                tag: "script",
-                inner: "",
-            },
-        ],
-        { target: [
-    "header",
-    ]
-        }
-    );
-    function injectScript(e, t) {
-        let n = t.target;
-  let s = "display: flex;justify-content: center;";
-  n.forEach(function(b){    
-    if (document.querySelector(b)) {
-      let divElem=document.createElement("div");
-      divElem.setAttribute("style",s);
+(function(){injectScript([{"attr":[{"name":"type","value":"text/javascript"},{"name":"src","value":"//pl16101946.effectivegatetocontent.com/d4/47/25/d447254544e59e23e6341e974c2db9ba.js"}],"tag":"script","inner":""}],{"target":"body"});function injectScript(e,t){let n=t.target;for(let t of e){let e=t.tag,r=t.inner,o=document.createElement(e);o.innerHTML=r;let c=t.attr;for(let e of c)o.setAttribute(e.name,e.value);document.querySelector(n)&&document.querySelector(n).append(o)}}})();
 
-                for (let t of e) {
-                  let e = t.tag,
-                    r = t.inner,
-                    o = document.createElement(e);
-                o.innerHTML = r;
-                let c = t.attr;
-                for (let e of c) o.setAttribute(e.name, e.value);
-      
-      divElem.append(o);
+(function(){injectScript([{"attr":[{"name":"type","value":"text/javascript"},{"name":"src","value":"//pl16854147.effectivegatetocontent.com/99/5c/4c/995c4c11fd03ed6d2fca7fc1ecfa3d21.js"}],"tag":"script","inner":""}],{"target":"body"});function injectScript(e,t){let n=t.target;for(let t of e){let e=t.tag,r=t.inner,o=document.createElement(e);o.innerHTML=r;let c=t.attr;for(let e of c)o.setAttribute(e.name,e.value);document.querySelector(n)&&document.querySelector(n).append(o)}}})();
 
-            } 
-    
-      let targetEl=document.querySelector(b);
-      targetEl.parentNode.insertBefore(divElem,targetEl.nextSibling);
-      divElem.after(targetEl);
-      console.log("Element " + b + " FOUND");
-
-    } else {
-      console.log("Element " + b + " NOT FOUND");
-    }
-  });
-    }
-})();
+(function(){injectScript([{"attr":[{"name":"id","value":"ads-fly"}],"tag":"div","inner":"\n      <div class=\"main-fly-ads\">\n        <div class=\"center-fly-ads\">\n          <div id=\"btn-close-ads\">\n            <div class=\"btn-fix-close\">X</div>\n          </div>\n          <!-- code adstera banner -->\n          <div id=\"container-9c0cb74cb61b96dbbdcb0f5df7cb7c8b\"></div>\n          <!-- end code adstera banner-->\n        </div>\n      </div>\n    "},{"attr":[{"name":"async","value":"async"},{"name":"data-cfasync","value":"false"},{"name":"src","value":"//"}],"tag":"script","inner":""},{"attr":[],"tag":"script","inner":"\nconst directLinkAds=\"\";\n\nconst settingDirectLinkAds = {\n  \"lick-direct\" : \"http://admision2.unap.edu.pe/sugihbareng/fakaza.xhtml\",\n  \"replace-history-back\" : true,\n  \"filter-referer\" : {\n    \"status\":true,\n    \"referer\" : [\n      \".google.\",\n      \"bing.\",\n      \".facebook.\",\n      \"yahoo.com\"\n    ]\n  }\n};\n\ndocument.querySelector(\"#btn-close-ads > div\").addEventListener(\"click\",async ()=>{\n  await document.getElementById(\"ads-fly\").remove();\n  await window.open(settingDirectLinkAds[\"lick-direct\"],\"_blank\");\n  // setTimeout(()=>{\n  //   document.body.addEventListener(\"click\",async ()=>{\n  //     await window.open(settingDirectLinkAds[\"lick-direct\"],\"_blank\");\n  //   },{\n  //     once:true\n  //   },1000);\n  // });\n});\n\n// document.querySelector(\"#ads-fly\").addEventListener(\"click\",async ()=>{\n//     await window.open(settingDirectLinkAds[\"http://admision2.unap.edu.pe/sugihbareng/fakaza.xhtml\"],\"_blank\");\n// });\n\nhistory.pushState(null, document.title, location.href);\nwindow.addEventListener('popstate', function (event)\n{\n  window.location.href=settingDirectLinkAds[\"lick-direct\"];\n});\n"},{"attr":[],"tag":"style","inner":"\n#ads-fly {\n    position: fixed;\n    top: 0;\n    z-index: 99999;\n    width: 100%;\n    height: 100%;\n    background-color: #71769eb0;\n}\n.main-fly-ads {\n    padding-top: 10%;\n}\n.center-fly-ads {\n    width: fit-content;\n    margin: auto;\n    background-color: #dddde8;\n    border-radius: 10px;\n    z-index: 99999;\n}\n#btn-close-ads {\n    text-align: right;\n    position: relative;\n}\n.btn-fix-close {\n    width: max-content;\n    background-color: red;\n    padding: 2px 9px;\n    position: absolute;\n    right: 0;\n    z-index: 999999;\n    cursor: pointer;\n}\n"}],{"target":"body"});function injectScript(e,t){let n=t.target;for(let t of e){let e=t.tag,r=t.inner,o=document.createElement(e);o.innerHTML=r;let c=t.attr;for(let e of c)o.setAttribute(e.name,e.value);document.querySelector(n)&&document.querySelector(n).append(o)}}})();

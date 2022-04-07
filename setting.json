@@ -1,12 +1,13 @@
 {
-  "name-web":"tryhardguides",
-  "author":"onnet",
+  "name-web":"Knowledge4U",
+  "author":"scez",
   "remove-comment-html":true,
-  "target":"https://tryhardguides.com",
+  "target":"https://www.drivereasy.com",
   "map-permalink":[
-    "cars",
+    "page",
     "content",
-    "otomotif",
+    "edu",
+	"sch",
     "host"
   ],
   "name-folder-sitemap":"sitemap",
@@ -39,7 +40,7 @@
       ]
     },
     {
-      "target":"m.tribunnews.com",
+      "target":"www.imlearningmath.com",
       "element-remove-selector":[
         ".baca",
         ".op-interactive",
@@ -80,21 +81,6 @@
       "data-attribute":[
         {
           "name-attribute":"name",
-          "value-attribute":"msvalidate.01"
-        },
-        {
-          "name-attribute":"content",
-          "value-attribute":"1BC62002411AB0D41B3F6F75B3B10E44"
-        }
-      ],
-      "data-innerHTML":"",
-      "position":"start"
-    },
-    {
-      "name-element":"meta",
-      "data-attribute":[
-        {
-          "name-attribute":"name",
           "value-attribute":"viewport"
         },
         {
@@ -110,11 +96,26 @@
       "data-attribute":[
         {
           "name-attribute":"name",
-          "value-attribute":"description"
+          "value-attribute":"yandex-verification"
         },
         {
           "name-attribute":"content",
-          "value-attribute":"${descriptionPost}"
+          "value-attribute":"9978ac6071cd9c44"
+        }
+      ],
+      "data-innerHTML":"",
+      "position":"start"
+    },
+    {
+      "name-element":"meta",
+      "data-attribute":[
+        {
+          "name-attribute":"name",
+          "value-attribute":"msvalidate.01"
+        },
+        {
+          "name-attribute":"content",
+          "value-attribute":"AAD824FDB67522B4172C0EA1020720B3"
         }
       ],
       "data-innerHTML":"",
